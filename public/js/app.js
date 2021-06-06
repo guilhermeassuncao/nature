@@ -39,12 +39,40 @@ $(document).ready(function () {
     });
 
     //Scroll Suave Logo
-    $('.logo').click(function(e){
+    $(".logo").click(function (e) {
         e.preventDefault();
 
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500)
-        
+        $("html, body").animate(
+            {
+                scrollTop: 0,
+            },
+            500
+        );
+    });
+
+    //Animar menu ao scroll
+    $("section").each(function () {
+        var height = $(this).height(),
+            offsetTop = $(this).offset().top,
+            menuHeight = $(".menu").innerHeight(),
+            id = $(this).attr("id"),
+            $itemMenu = $('a[href="#' + id + '"]'),
+            activeClass = 'active';
+
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            if (offsetTop - menuHeight < scrollTop && offsetTop + height - menuHeight > scrollTop) {
+                $itemMenu.addClass(activeClass);
+            } else {
+                $itemMenu.removeClass(activeClass);
+            }
+        });
+    });
+
+    //Ativar e desativar btn mobile
+    $('.mobile-btn').click(function(){
+        activeClass = 'active';
+        $(this).toggleClass(activeClass);
+        $('.mobile-menu').toggleClass(activeClass);
     })
 });
