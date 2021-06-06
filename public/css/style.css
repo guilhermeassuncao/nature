@@ -224,6 +224,23 @@ p {
     max-width: 100%;
 }
 
+.slide {
+    position: relative;
+    overflow: hidden;
+}
+
+.slide > * {
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.slide > .active {
+    position: relative;
+    opacity: 1;
+}
+
 /* Classes Jquery */
 [data-target] {
     opacity: 0;
@@ -246,6 +263,17 @@ p {
     position: relative;
     top: auto;
     transform: translate3d(0px, 0, 0);
+}
+
+[data-anime] {
+    opacity: 0;
+    transform: translate3d(0, -50px, 0);
+    transition: 0.3s;
+}
+
+[data-anime].animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
 }
 
 /* Responsivo */

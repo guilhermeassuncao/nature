@@ -1,5 +1,22 @@
 $(document).ready(function () {
-    //Adicionar activer ao clique
+    //Debounce
+    debounce = function (func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this,
+                args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+    //Adicionar active ao clique
     $("[data-tab]").each(function () {
         var $allTarget = $(this).find("[data-target]"),
             $allClick = $(this).find("[data-click]"),
@@ -22,7 +39,7 @@ $(document).ready(function () {
         });
     });
 
-    //Scroll Suave
+    //Scroll Suave link interno
     $('.menu-nav a[href^="#"]').click(function (e) {
         e.preventDefault();
 
@@ -38,7 +55,7 @@ $(document).ready(function () {
         );
     });
 
-    //Scroll Suave Logo
+    //Scroll Suave para o topo
     $(".logo").click(function (e) {
         e.preventDefault();
 
@@ -57,22 +74,87 @@ $(document).ready(function () {
             menuHeight = $(".menu").innerHeight(),
             id = $(this).attr("id"),
             $itemMenu = $('a[href="#' + id + '"]'),
-            activeClass = 'active';
+            activeClass = "active";
 
-        $(window).scroll(function () {
-            var scrollTop = $(window).scrollTop();
-            if (offsetTop - menuHeight < scrollTop && offsetTop + height - menuHeight > scrollTop) {
-                $itemMenu.addClass(activeClass);
-            } else {
-                $itemMenu.removeClass(activeClass);
-            }
-        });
+        $(window).scroll(
+            debounce(function () {
+                var scrollTop = $(window).scrollTop();
+                if (offsetTop - menuHeight < scrollTop && offsetTop + height - menuHeight > scrollTop) {
+                    $itemMenu.addClass(activeClass);
+                } else {
+                    $itemMenu.removeClass(activeClass);
+                }
+            }, 200)
+        );
     });
 
     //Ativar e desativar btn mobile
-    $('.mobile-btn').click(function(){
-        activeClass = 'active';
+    $(".mobile-btn").click(function () {
+        activeClass = "active";
         $(this).toggleClass(activeClass);
-        $('.mobile-menu').toggleClass(activeClass);
-    })
+        $(".mobile-menu").toggleClass(activeClass);
+    });
+
+    //Slider
+    (function () {
+        function slider(sliderName, velocidade) {
+            var sliderClass = "." + sliderName,
+                activeClass = "active",
+                rotate = setInterval(rotateSlide, velocidade);
+
+            $(sliderClass + " > :first").addClass(activeClass);
+
+            $(sliderClass).hover(
+                function () {
+                    clearInterval(rotate);
+                },
+                function () {
+                    rotate = setInterval(rotateSlide, velocidade);
+                }
+            );
+
+            function rotateSlide() {
+                var activeSlide = $(sliderClass + " > ." + activeClass),
+                    nextSlide = activeSlide.next();
+
+                if (nextSlide.length == 0) {
+                    nextSlide = $(sliderClass + ".slide > :first");
+                }
+
+                activeSlide.removeClass(activeClass);
+                nextSlide.addClass(activeClass);
+            }
+        }
+
+        slider("introducao", 2000);
+    })();
+
+    // Animação ao Scroll
+    (function () {
+        var $target = $('[data-anime="scroll"]'),
+            animationClass = "animate",
+            offSet = ($(window).height() * 3) / 4;
+
+        function animeScroll() {
+            var documentTop = $(window).scrollTop();
+
+            $target.each(function () {
+                var itemTop = $(this).offset().top;
+
+                if (documentTop > itemTop - offSet) {
+                    $(this).addClass(animationClass);
+                } else {
+                    $(this).removeClass(animationClass);
+                }
+            });
+        }
+
+        animeScroll();
+
+        $(document).scroll(
+            debounce(function () {
+                animeScroll();
+            }, 200)
+        );
+    })();
 });
