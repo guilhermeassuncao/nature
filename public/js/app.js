@@ -44,8 +44,8 @@ $(document).ready(function () {
         e.preventDefault();
 
         var id = $(this).attr("href"),
-            menuHeight = $(".menu").innerHeight();
-        targetOffset = $(id).offset().top;
+            menuHeight = $(".menu").innerHeight(),
+            targetOffset = $(id).offset().top;
 
         $("html, body").animate(
             {
@@ -70,7 +70,7 @@ $(document).ready(function () {
     //Animar menu ao scroll
     $("section").each(function () {
         var height = $(this).height(),
-            offsetTop = $(this).offset().top,
+            offSetTop = $(this).offset().top,
             menuHeight = $(".menu").innerHeight(),
             id = $(this).attr("id"),
             $itemMenu = $('a[href="#' + id + '"]'),
@@ -79,7 +79,7 @@ $(document).ready(function () {
         $(window).scroll(
             debounce(function () {
                 var scrollTop = $(window).scrollTop();
-                if (offsetTop - menuHeight < scrollTop && offsetTop + height - menuHeight > scrollTop) {
+                if (offSetTop - menuHeight < scrollTop && offSetTop + height - menuHeight > scrollTop) {
                     $itemMenu.addClass(activeClass);
                 } else {
                     $itemMenu.removeClass(activeClass);
