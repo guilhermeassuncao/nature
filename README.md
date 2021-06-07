@@ -3,14 +3,14 @@
 <br>
 
 <div align="center">
-  <img src="public/img/wildbeast-github.svg" alt="bikcraft">
+  <img src="public/img/nature-github.svg" alt="nature">
 </div>
 
 <br>
 
 ## :bookmark_tabs: Sobre
 
-Projeto desenvolvido no curso CSS Grid Layout
+Projeto desenvolvido no curso Jquery
 
 Intituição - Origamid
 
@@ -22,7 +22,8 @@ Professor - André Rafael
 
 - HTML5
 - CSS3
-- CSS Grid Layout
+- JavaScript
+- Jquery
 
 
 <br>

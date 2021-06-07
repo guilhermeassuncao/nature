@@ -278,6 +278,7 @@ p {
 
 /* Responsivo */
 @media only screen and (max-width: 768px) {
+    /* Mobile */
     .mobile-btn {
         display: block;
         color: white;
@@ -344,5 +345,44 @@ p {
         border-top: 2px solid;
         width: 100%;
         text-align: center;
+    }
+
+    /* Seções */
+    .tab-menu {
+        padding: 0;
+    }
+    .item-img, .item-info {
+        float: none;
+        margin: 0 auto;
+    }
+
+    .item-img {
+        padding: 0;
+    }
+
+    .item-info {
+        width: 75%;
+        margin-top: -40px;
+    }
+
+    .item-info > div {
+        width: 75%;
+        float: none;
+        margin: 0 auto;
+    }
+
+    .item-info div:first-child {
+        margin-top: 40px;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    .item-img, .item-info {
+        width: 70%;
+    }
+
+    .item h2 {
+        font-size: 1.5em;
     }
 }

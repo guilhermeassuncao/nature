@@ -84,7 +84,7 @@ $(document).ready(function () {
                 } else {
                     $itemMenu.removeClass(activeClass);
                 }
-            }, 200)
+            }, 150)
         );
     });
 
@@ -143,8 +143,6 @@ $(document).ready(function () {
 
                 if (documentTop > itemTop - offSet) {
                     $(this).addClass(animationClass);
-                } else {
-                    $(this).removeClass(animationClass);
                 }
             });
         }
@@ -154,7 +152,7 @@ $(document).ready(function () {
         $(document).scroll(
             debounce(function () {
                 animeScroll();
-            }, 200)
+            }, 150)
         );
     })();
 });
