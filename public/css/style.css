@@ -1,4 +1,3 @@
-/* Geral */
 * {
     box-sizing: border-box;
 }
@@ -12,7 +11,7 @@ body {
 h1,
 h2,
 h3 {
-    font-family: "Playfair Display";
+    font-family: 'Playfair Display';
     font-weight: 900;
 }
 
@@ -36,7 +35,6 @@ p {
     margin-bottom: 40px;
 }
 
-/* Menu e Logo */
 .menu {
     background: #56cc9d;
     position: fixed;
@@ -73,7 +71,7 @@ p {
 }
 
 .menu nav li a::after {
-    content: "";
+    content: '';
     display: block;
     background: white;
     height: 2px;
@@ -92,14 +90,13 @@ p {
     width: 200px;
     padding: 10px 10px 14px 20px;
     text-decoration: none;
-    font-family: "Playfair Display";
+    font-family: 'Playfair Display';
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 2em;
     float: left;
 }
 
-/* Container */
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -107,12 +104,11 @@ p {
 }
 
 .container::after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
 }
 
-/* Seções */
 .tab-menu {
     text-align: center;
     margin: 20px 0 40px 0;
@@ -130,7 +126,7 @@ p {
     width: 200px;
     margin: 20px;
     text-decoration: none;
-    font-family: "Playfair Display";
+    font-family: 'Playfair Display';
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -202,7 +198,6 @@ p {
     width: 100%;
 }
 
-/* Introdução */
 .introducao {
     background: black;
 }
@@ -241,7 +236,6 @@ p {
     opacity: 1;
 }
 
-/* Classes Jquery */
 [data-target] {
     opacity: 0;
     visibility: hidden;
@@ -276,9 +270,7 @@ p {
     transform: translate3d(0, 0, 0);
 }
 
-/* Responsivo */
 @media only screen and (max-width: 768px) {
-    /* Mobile */
     .mobile-btn {
         display: block;
         color: white;
@@ -294,7 +286,7 @@ p {
 
     .mobile-btn::after,
     .mobile-btn::before {
-        content: "";
+        content: '';
         display: block;
         height: 4px;
         margin-top: 6px;
@@ -347,11 +339,11 @@ p {
         text-align: center;
     }
 
-    /* Seções */
     .tab-menu {
         padding: 0;
     }
-    .item-img, .item-info {
+    .item-img,
+    .item-info {
         float: none;
         margin: 0 auto;
     }
@@ -374,11 +366,11 @@ p {
     .item-info div:first-child {
         margin-top: 40px;
     }
-
 }
 
 @media only screen and (max-width: 480px) {
-    .item-img, .item-info {
+    .item-img,
+    .item-info {
         width: 70%;
     }
 

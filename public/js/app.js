@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    //Debounce
     debounce = function (func, wait, immediate) {
         var timeout;
         return function () {
@@ -16,11 +15,10 @@ $(document).ready(function () {
         };
     };
 
-    //Adicionar active ao clique
-    $("[data-tab]").each(function () {
-        var $allTarget = $(this).find("[data-target]"),
-            $allClick = $(this).find("[data-click]"),
-            activeClass = "active";
+    $('[data-tab]').each(function () {
+        var $allTarget = $(this).find('[data-target]'),
+            $allClick = $(this).find('[data-click]'),
+            activeClass = 'active';
 
         $allTarget.first().addClass(activeClass);
         $allClick.first().addClass(activeClass);
@@ -28,26 +26,25 @@ $(document).ready(function () {
         $allClick.click(function (e) {
             e.preventDefault();
 
-            var idData = $(this).data("click"),
+            var idData = $(this).data('click'),
                 $target = $('[data-target="' + idData + '"]');
 
-            $allClick.removeClass("active");
-            $allTarget.removeClass("active");
+            $allClick.removeClass('active');
+            $allTarget.removeClass('active');
 
-            $(this).addClass("active");
-            $target.addClass("active");
+            $(this).addClass('active');
+            $target.addClass('active');
         });
     });
 
-    //Scroll Suave link interno
     $('.menu-nav a[href^="#"]').click(function (e) {
         e.preventDefault();
 
-        var id = $(this).attr("href"),
-            menuHeight = $(".menu").innerHeight(),
+        var id = $(this).attr('href'),
+            menuHeight = $('.menu').innerHeight(),
             targetOffset = $(id).offset().top;
 
-        $("html, body").animate(
+        $('html, body').animate(
             {
                 scrollTop: targetOffset - menuHeight,
             },
@@ -55,11 +52,10 @@ $(document).ready(function () {
         );
     });
 
-    //Scroll Suave para o topo
-    $(".logo").click(function (e) {
+    $('.logo').click(function (e) {
         e.preventDefault();
 
-        $("html, body").animate(
+        $('html, body').animate(
             {
                 scrollTop: 0,
             },
@@ -67,14 +63,13 @@ $(document).ready(function () {
         );
     });
 
-    //Animar menu ao scroll
-    $("section").each(function () {
+    $('section').each(function () {
         var height = $(this).height(),
             offSetTop = $(this).offset().top,
-            menuHeight = $(".menu").innerHeight(),
-            id = $(this).attr("id"),
+            menuHeight = $('.menu').innerHeight(),
+            id = $(this).attr('id'),
             $itemMenu = $('a[href="#' + id + '"]'),
-            activeClass = "active";
+            activeClass = 'active';
 
         $(window).scroll(
             debounce(function () {
@@ -88,21 +83,19 @@ $(document).ready(function () {
         );
     });
 
-    //Ativar e desativar btn mobile
-    $(".mobile-btn").click(function () {
-        activeClass = "active";
+    $('.mobile-btn').click(function () {
+        activeClass = 'active';
         $(this).toggleClass(activeClass);
-        $(".mobile-menu").toggleClass(activeClass);
+        $('.mobile-menu').toggleClass(activeClass);
     });
 
-    //Slider
     (function () {
         function slider(sliderName, velocidade) {
-            var sliderClass = "." + sliderName,
-                activeClass = "active",
+            var sliderClass = '.' + sliderName,
+                activeClass = 'active',
                 rotate = setInterval(rotateSlide, velocidade);
 
-            $(sliderClass + " > :first").addClass(activeClass);
+            $(sliderClass + ' > :first').addClass(activeClass);
 
             $(sliderClass).hover(
                 function () {
@@ -114,11 +107,11 @@ $(document).ready(function () {
             );
 
             function rotateSlide() {
-                var activeSlide = $(sliderClass + " > ." + activeClass),
+                var activeSlide = $(sliderClass + ' > .' + activeClass),
                     nextSlide = activeSlide.next();
 
                 if (nextSlide.length == 0) {
-                    nextSlide = $(sliderClass + ".slide > :first");
+                    nextSlide = $(sliderClass + '.slide > :first');
                 }
 
                 activeSlide.removeClass(activeClass);
@@ -126,13 +119,12 @@ $(document).ready(function () {
             }
         }
 
-        slider("introducao", 2000);
+        slider('introducao', 2000);
     })();
 
-    // Animação ao Scroll
     (function () {
         var $target = $('[data-anime="scroll"]'),
-            animationClass = "animate",
+            animationClass = 'animate',
             offSet = ($(window).height() * 3) / 4;
 
         function animeScroll() {
